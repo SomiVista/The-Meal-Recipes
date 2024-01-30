@@ -2,8 +2,13 @@
 export default {
   content: [],
   theme: {
+    container: {
+      center: true,
+    },
     extend: {},
   },
-  plugins: [],
+  plugins: [
+    require('@tailwindcss/forms'),
+  ],
 }
 
