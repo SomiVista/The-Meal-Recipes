@@ -9,8 +9,12 @@ function getMeals() {
   fetch(
     `https://www.themealdb.com/api/json/v1/1/search.php?s=${searchPherase.value}`
   )
-    .then((response) => response.json())
-    .then(({ meals }) => (meals.value = meals));
+    .then(async (response) => {
+      return (await response.json()) as { meals: Array<any> };
+    })
+    .then((data) => {
+      meals.value = data.meals;
+    });
 }
 </script>
 
@@ -27,6 +31,7 @@ function getMeals() {
             </lable>
             <input
               v-model="searchPherase"
+              @keyup.enter="getMeals"
               aria-label="enter email adress"
               role="input"
               type="email"
